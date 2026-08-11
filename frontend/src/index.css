@@ -1,40 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap");
+
 :root {
-  --bg-primary: #0a0f1a;
-  --bg-secondary: #1118272e;
-  --text-primary: #ffffff;
-  --text-secondary: #a7b0c0;
-  --accent: #2564eb;
-  --accent-hover: #1d4fd869;
-  --border: #263244;
+  --bg-primary: #f6f7f9;
+  --bg-secondary: #ffffff;
+  --surface-muted: #f0f3f7;
+  --text-primary: #172033;
+  --text-secondary: #657083;
+  --accent: #e45c2b;
+  --accent-hover: #c94719;
+  --accent-soft: #fff0e9;
+  --border: #dfe5ed;
+  --border-strong: #cbd4df;
+  --success: #14856b;
   --container-width: 1200px;
+  --shadow-sm: 0 4px 14px rgba(26, 38, 56, 0.06);
+  --shadow-md: 0 16px 40px rgba(26, 38, 56, 0.1);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { min-width: 320px; background: var(--bg-primary); color: var(--text-primary); font-family: "DM Sans", Arial, sans-serif; line-height: 1.5; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid rgba(228, 92, 43, 0.26); outline-offset: 2px; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+h1, h2, h3, h4 { font-family: "Manrope", "DM Sans", sans-serif; line-height: 1.18; }
 
-html {
-  scroll-behavior: smooth;
-}
+/* Simple landing-page sections that do not own a dedicated component stylesheet. */
+main + section, .hero + .search-bar + section, .hero + .search-bar + section + section { width: min(90%, var(--container-width)); margin-inline: auto; }
+section:not([class]) { padding: 28px 0; }
+section:not([class]) h2 { margin-bottom: 18px; font-size: clamp(1.35rem, 2vw, 1.8rem); }
+section:not([class]) > div { display: flex; flex-wrap: wrap; gap: 10px; }
+section:not([class]) button { padding: 10px 17px; border: 1px solid var(--border); border-radius: 999px; background: var(--bg-secondary); color: var(--text-primary); font-weight: 600; box-shadow: var(--shadow-sm); transition: 180ms ease; }
+section:not([class]) button:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+footer { margin-top: 40px; padding: 28px 5%; border-top: 1px solid var(--border); background: #fff; color: var(--text-secondary); text-align: center; font-size: .9rem; }
 
-body {
-  font-family: Arial, sans-serif;
-  background: #0a0f1a;
-  color: #ffffff;
-}
-
-button,
-input {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
+@media (max-width: 600px) { section:not([class]) { padding: 22px 0; } }

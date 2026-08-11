@@ -11,7 +11,8 @@ export const getAllCars = async ({
   bodyType = "",
   minPrice = "",
   maxPrice = "",
-  year=""
+  year="",
+  sort="",
 } = {}) => {
 
   const response = await axios.get(API_URL, {
@@ -23,7 +24,8 @@ export const getAllCars = async ({
       bodyType,
       minPrice,
       maxPrice,
-      year
+      year,
+      sort
     },
   });
 

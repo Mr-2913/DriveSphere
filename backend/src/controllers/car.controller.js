@@ -4,7 +4,7 @@ import { buildCarFilter } from "../utils/carQuery.js";
 
 export const createCar = async (req, res) => {
   try {
-    // check fro role admin
+    // ================= CHECK ADMIN =================
     if (req.user.role !== "admin") {
       return res.status(403).json({
         success: false,
@@ -12,7 +12,7 @@ export const createCar = async (req, res) => {
       });
     }
 
-    // reqest body fetch and create
+    // ================= BASIC DATA =================
     const {
       brand,
       model,
@@ -23,9 +23,15 @@ export const createCar = async (req, res) => {
       fuelType,
       transmission,
       seatingCapacity,
+      // Detailed specifications
+      engine,
+      dimensions,
+      safety,
+      features,
+      images,
     } = req.body;
 
-    //checks for body items
+    // ================= REQUIRED FIELDS =================
     if (
       !brand ||
       !model ||
@@ -36,13 +42,13 @@ export const createCar = async (req, res) => {
       !transmission ||
       !seatingCapacity
     ) {
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
-        message: "required car fields are missing.",
+        message: "Required car fields are missing.",
       });
     }
 
-    // create cars
+    // ================= CREATE CAR =================
     const car = await Car.create({
       brand,
       model,
@@ -53,15 +59,22 @@ export const createCar = async (req, res) => {
       fuelType,
       transmission,
       seatingCapacity,
+      engine,
+      dimensions,
+      safety,
+      features,
+      images,
     });
 
-    return res.status(200).json({
+    // ================= RESPONSE =================
+    return res.status(201).json({
       success: true,
-      message: "car enterd sucessfully",
+      message: "Car entered successfully",
       data: car,
     });
   } catch (error) {
-    res.status(500).json({
+    console.error("Create car error:", error);
+    return res.status(500).json({
       success: false,
       message: error.message,
     });
@@ -70,17 +83,70 @@ export const createCar = async (req, res) => {
 
 export const getAllCars = async (req, res) => {
   try {
-    
-    const filter= buildCarFilter(req.query);
+    const {
+      sort,
+      page = 1,
+      limit = 6
+    } = req.query;
 
-    const cars = await Car.find(filter);
+    // ---------------- FILTER ----------------
+    const filter = buildCarFilter(req.query);
 
+    // ---------------- PAGINATION VALUES ----------------
+    const pageNumber = Number(page);
+    const limitNumber = Number(limit);
+
+    const skip = (pageNumber - 1) * limitNumber;
+
+    // ---------------- QUERY ----------------
+    let query = Car.find(filter);
+
+    // ---------------- SORTING ----------------
+    if (sort === "price_asc") {
+      query = query.sort({ price: 1 });
+    }
+
+    if (sort === "price_desc") {
+      query = query.sort({ price: -1 });
+    }
+
+    if (sort === "newest") {
+      query = query.sort({ year: -1 });
+    }
+
+    if (sort === "oldest") {
+      query = query.sort({ year: 1 });
+    }
+
+    // ---------------- PAGINATION ----------------
+    query = query
+      .skip(skip)
+      .limit(limitNumber);
+
+    // ---------------- EXECUTE QUERY ----------------
+    const cars = await query;
+
+    // ---------------- TOTAL CARS ----------------
+    const totalCars = await Car.countDocuments(filter);
+
+
+    // ---------------- TOTAL PAGES ----------------
+    const totalPages = Math.ceil(
+      totalCars / limitNumber
+    );
+
+    // ---------------- RESPONSE ----------------
     return res.status(200).json({
       success: true,
       count: cars.length,
+      totalCars,
+      currentPage: pageNumber,
+      totalPages,
+      limit: limitNumber,
       data: cars,
     });
   } catch (error) {
+    console.error("Get all cars error:", error);
     return res.status(500).json({
       success: false,
       message: error.message,
@@ -116,8 +182,7 @@ export const updateCar = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const updateData = {};
-
+    // ================= BASIC DATA =================
     const {
       brand,
       model,
@@ -128,25 +193,84 @@ export const updateCar = async (req, res) => {
       fuelType,
       transmission,
       seatingCapacity,
+      // Detailed data
+      engine,
+      dimensions,
+      safety,
+      features,
+      images,
     } = req.body;
 
-    if (brand !== undefined) updateData.brand = brand;
-    if (model !== undefined) updateData.model = model;
-    if (variant !== undefined) updateData.variant = variant;
-    if (year !== undefined) updateData.year = year;
-    if (price !== undefined) updateData.price = price;
-    if (bodyType !== undefined) updateData.bodyType = bodyType;
-    if (fuelType !== undefined) updateData.fuelType = fuelType;
-    if (transmission !== undefined) updateData.transmission = transmission;
+    // ================= UPDATE OBJECT =================
+    const updateData = {};
+
+    // Basic fields
+    if (brand !== undefined) {
+      updateData.brand = brand;
+    }
+
+    if (model !== undefined) {
+      updateData.model = model;
+    }
+
+    if (variant !== undefined) {
+      updateData.variant = variant;
+    }
+
+    if (year !== undefined) {
+      updateData.year = year;
+    }
+
+    if (price !== undefined) {
+      updateData.price = price;
+    }
+
+    if (bodyType !== undefined) {
+      updateData.bodyType = bodyType;
+    }
+
+    if (fuelType !== undefined) {
+      updateData.fuelType = fuelType;
+    }
+
+    if (transmission !== undefined) {
+      updateData.transmission = transmission;
+    }
+
     if (seatingCapacity !== undefined) {
       updateData.seatingCapacity = seatingCapacity;
     }
 
-    const updatedCar = await Car.findByIdAndUpdate(id, updateData, {
-      returnDocument: "after",
-      runValidators: true,
-    });
+    // ================= DETAILED DATA =================
+    if (engine !== undefined) {
+      updateData.engine = engine;
+    }
 
+    if (dimensions !== undefined) {
+      updateData.dimensions = dimensions;
+    }
+
+    if (safety !== undefined) {
+      updateData.safety = safety;
+    }
+
+    if (features !== undefined) {
+      updateData.features = features;
+    }
+
+    if (images !== undefined) {
+      updateData.images = images;
+    }
+
+    // ================= UPDATE DATABASE =================
+    const updatedCar = await Car.findByIdAndUpdate(id, updateData,
+      {
+        returnDocument: "after",
+        runValidators: true,
+      }
+    );
+
+    // ================= CHECK CAR =================
     if (!updatedCar) {
       return res.status(404).json({
         success: false,
@@ -154,12 +278,14 @@ export const updateCar = async (req, res) => {
       });
     }
 
+    // ================= RESPONSE =================
     return res.status(200).json({
       success: true,
       message: "Car updated successfully",
       data: updatedCar,
     });
   } catch (error) {
+    console.error("Update car error:", error);
     return res.status(500).json({
       success: false,
       message: error.message,
