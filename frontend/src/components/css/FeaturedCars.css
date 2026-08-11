@@ -1,0 +1,281 @@
+.featured-cars {
+  width: 90%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding: 60px 0;
+}
+
+.featured-cars h2 {
+  margin-bottom: 30px;
+
+  font-size: 32px;
+}
+
+
+/* =================================================
+   SEARCH + FILTERS
+   ================================================= */
+
+.car-filters {
+  width: 100%;
+
+  display: flex;
+  align-items: stretch;
+
+  gap: 12px;
+
+  margin-bottom: 40px;
+
+  flex-wrap: wrap;
+}
+
+
+/* =================================================
+   SEARCH BAR
+   ================================================= */
+
+.car-filters .search-bar {
+  flex: 1 1 350px;
+
+  width: auto;
+
+  margin: 0;
+
+  min-width: 280px;
+}
+
+
+/* =================================================
+   SELECT FILTERS
+   ================================================= */
+
+.car-filters select {
+  width: 170px;
+
+  min-width: 160px;
+
+  height: 52px;
+
+  padding: 0 14px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  background: var(--bg-secondary);
+
+  color: var(--text-primary);
+
+  font-size: 14px;
+
+  outline: none;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.car-filters select:hover {
+  border-color: var(--accent);
+}
+
+
+.car-filters select:focus {
+  border-color: var(--accent);
+}
+
+
+/* =================================================
+   PRICE INPUTS
+   ================================================= */
+
+.car-filters input[type="number"] {
+  width: 140px;
+
+  min-width: 130px;
+
+  height: 52px;
+
+  box-sizing: border-box;
+
+  padding: 0 14px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  background: var(--bg-secondary);
+
+  color: var(--text-primary);
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition: border-color 0.2s ease;
+}
+
+
+.car-filters input[type="number"]:hover {
+  border-color: var(--accent);
+}
+
+
+.car-filters input[type="number"]:focus {
+  border-color: var(--accent);
+}
+
+
+.car-filters input[type="number"]::placeholder {
+  color: var(--text-secondary);
+}
+
+
+/* Remove number arrows */
+
+.car-filters input[type="number"]::-webkit-inner-spin-button,
+.car-filters input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+
+  margin: 0;
+}
+
+.car-filters input[type="number"] {
+  appearance: textfield;
+}
+
+
+/* =================================================
+   LOADING / ERROR / EMPTY
+   ================================================= */
+
+.featured-cars > p {
+  margin: 30px 0;
+
+  color: var(--text-secondary);
+
+  text-align: center;
+
+  font-size: 16px;
+}
+
+
+/* =================================================
+   CAR GRID
+   ================================================= */
+
+.car-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 24px;
+
+  align-items: start;
+}
+
+
+/* =================================================
+   TABLET
+   ================================================= */
+
+@media (max-width: 1100px) {
+
+  .car-filters {
+    gap: 12px;
+  }
+
+  .car-filters .search-bar {
+    flex: 1 1 100%;
+  }
+
+  .car-filters select {
+    flex: 1;
+
+    min-width: 150px;
+  }
+
+  .car-filters input[type="number"] {
+    flex: 1;
+
+    min-width: 140px;
+  }
+
+}
+
+
+/* =================================================
+   SMALL TABLET
+   ================================================= */
+
+@media (max-width: 900px) {
+
+  .car-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+/* =================================================
+   MOBILE
+   ================================================= */
+
+@media (max-width: 600px) {
+
+  .featured-cars {
+    width: 92%;
+
+    padding: 40px 0;
+  }
+
+
+  .featured-cars h2 {
+    font-size: 28px;
+  }
+
+
+  .car-filters {
+    width: 100%;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-bottom: 35px;
+  }
+
+
+  .car-filters .search-bar {
+    width: 100%;
+
+    min-width: 0;
+  }
+
+
+  .car-filters select,
+  .car-filters input[type="number"] {
+    width: 100%;
+
+    min-width: 0;
+
+    height: 52px;
+
+    flex: none;
+  }
+
+
+  .car-grid {
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+  }
+
+}

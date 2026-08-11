@@ -1,0 +1,40 @@
+:root {
+  --bg-primary: #0a0f1a;
+  --bg-secondary: #1118272e;
+  --text-primary: #ffffff;
+  --text-secondary: #a7b0c0;
+  --accent: #2564eb;
+  --accent-hover: #1d4fd869;
+  --border: #263244;
+  --container-width: 1200px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #0a0f1a;
+  color: #ffffff;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
