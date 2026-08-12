@@ -1,0 +1,513 @@
+/* =========================================================
+   ADD / EDIT CAR PAGE — LIGHT THEME
+========================================================= */
+
+.admin-add-car {
+  width: 100%;
+  min-height: 100%;
+  padding: 32px;
+  box-sizing: border-box;
+  background: #f6f8fb;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.admin-page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.admin-page-header h1 {
+  margin: 6px 0 8px;
+  color: #172033;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.admin-page-header p {
+  margin: 0;
+  color: #718096;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.admin-eyebrow {
+  color: #2563eb !important;
+  font-size: 12px !important;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.admin-primary-btn,
+.admin-secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+  padding: 0 20px;
+
+  border-radius: 9px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  text-decoration: none;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+/* Primary */
+
+.admin-primary-btn {
+  border: 1px solid #2563eb;
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.admin-primary-btn:hover {
+  background: #1d4ed8;
+
+  box-shadow:
+    0 5px 14px rgba(37, 99, 235, 0.18);
+
+  transform: translateY(-1px);
+}
+
+.admin-primary-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+}
+
+
+/* Secondary */
+
+.admin-secondary-btn {
+  border: 1px solid #d9dee7;
+  background: #ffffff;
+  color: #344054;
+}
+
+.admin-secondary-btn:hover {
+  border-color: #c4ccd8;
+  background: #f8fafc;
+}
+
+
+/* =========================================================
+   FORM MESSAGE
+========================================================= */
+
+.admin-form-message {
+  margin-bottom: 20px;
+  padding: 14px 16px;
+
+  border-radius: 9px;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.admin-form-message.error {
+  border: 1px solid #fecaca;
+  background: #fff7f7;
+  color: #dc2626;
+}
+
+.admin-form-message.success {
+  border: 1px solid #bbf7d0;
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.admin-car-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+/* =========================================================
+   FORM SECTION
+========================================================= */
+
+.admin-form-section {
+  padding: 26px;
+
+  border: 1px solid #e3e8ef;
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 4px 18px rgba(15, 23, 42, 0.05);
+}
+
+.admin-form-section-header {
+  margin-bottom: 24px;
+}
+
+.admin-form-section-header h2 {
+  margin: 0 0 6px;
+
+  color: #172033;
+
+  font-size: 19px;
+  font-weight: 650;
+}
+
+.admin-form-section-header p {
+  margin: 0;
+
+  color: #8a94a3;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   FORM GRID
+========================================================= */
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+
+/* =========================================================
+   FORM FIELD
+========================================================= */
+
+.admin-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-form-field label {
+  color: #344054;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.admin-form-field .required {
+  margin-left: 4px;
+  color: #dc2626;
+}
+
+
+/* =========================================================
+   INPUT / SELECT / TEXTAREA
+========================================================= */
+
+.admin-form-field input,
+.admin-form-field select,
+.admin-form-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+
+  border: 1px solid #d9dee7;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #172033;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+
+/* Input + Select */
+
+.admin-form-field input,
+.admin-form-field select {
+  height: 46px;
+  padding: 0 13px;
+}
+
+
+/* Textarea */
+
+.admin-form-field textarea {
+  min-height: 110px;
+
+  padding: 12px 13px;
+
+  resize: vertical;
+}
+
+
+/* Placeholder */
+
+.admin-form-field input::placeholder,
+.admin-form-field textarea::placeholder {
+  color: #98a2b3;
+}
+
+
+/* Hover */
+
+.admin-form-field input:hover,
+.admin-form-field select:hover,
+.admin-form-field textarea:hover {
+  border-color: #b8c1ce;
+}
+
+
+/* Focus */
+
+.admin-form-field input:focus,
+.admin-form-field select:focus,
+.admin-form-field textarea:focus {
+  border-color: #2563eb;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+
+/* =========================================================
+   SELECT
+========================================================= */
+
+.admin-form-field select {
+  cursor: pointer;
+}
+
+.admin-form-field select option {
+  background: #ffffff;
+  color: #172033;
+}
+
+
+/* =========================================================
+   CHECKBOX GRID
+========================================================= */
+
+.admin-form-checkbox-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+
+/* =========================================================
+   CHECKBOX
+========================================================= */
+
+.admin-checkbox {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  min-height: 48px;
+  padding: 0 14px;
+
+  border: 1px solid #dfe4eb;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #475467;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.admin-checkbox:hover {
+  border-color: #b8c1ce;
+  background: #f8fafc;
+}
+
+.admin-checkbox input {
+  width: 17px;
+  height: 17px;
+
+  margin: 0;
+
+  accent-color: #2563eb;
+
+  cursor: pointer;
+}
+
+.admin-checkbox span {
+  user-select: none;
+}
+
+
+/* =========================================================
+   FORM ACTIONS
+========================================================= */
+
+.admin-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+
+  padding: 20px 0 8px;
+}
+
+
+/* =========================================================
+   LOADING / EMPTY STATE
+========================================================= */
+
+.admin-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 220px;
+  padding: 30px;
+
+  border: 1px solid #e3e8ef;
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  color: #667085;
+
+  font-size: 14px;
+
+  box-shadow:
+    0 4px 18px rgba(15, 23, 42, 0.04);
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+  .admin-add-car {
+    padding: 26px;
+  }
+
+  .admin-form-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .admin-form-checkbox-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .admin-add-car {
+    padding: 18px;
+  }
+
+  .admin-page-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-page-header h1 {
+    font-size: 26px;
+  }
+
+  .admin-page-header .admin-secondary-btn {
+    width: 100%;
+  }
+
+  .admin-form-section {
+    padding: 20px 16px;
+  }
+
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-form-checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-form-actions {
+    justify-content: stretch;
+  }
+
+  .admin-form-actions .admin-primary-btn {
+    width: 100%;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+  .admin-add-car {
+    padding: 14px;
+  }
+
+  .admin-form-section {
+    padding: 18px 14px;
+  }
+
+  .admin-page-header h1 {
+    font-size: 23px;
+  }
+
+  .admin-form-section-header h2 {
+    font-size: 17px;
+  }
+}

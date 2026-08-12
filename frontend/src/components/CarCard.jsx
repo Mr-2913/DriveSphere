@@ -1,26 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import { useCompare } from "../context/CompareContext";
+import { useWishlist } from "../context/WishlistContext";
+
 import "./css/CarCard.css";
 
 function CarCard({ car }) {
+  // ==============================
+  // COMPARE
+  // ==============================
+
   const {
     compareCars,
     addToCompare,
     removeFromCompare,
   } = useCompare();
 
-  // Check whether this car is already selected
+  // Check if this car is already compared
   const isCompared = compareCars.some(
     (item) => item._id === car._id
   );
 
-  // Check whether 2 cars are already selected
+  // Maximum 2 cars can be compared
   const compareLimitReached =
     compareCars.length >= 2;
 
+  // Handle compare button
   const handleCompare = () => {
-    // If already selected → remove
+    // If already compared → remove
     if (isCompared) {
       removeFromCompare(car._id);
       return;
@@ -31,35 +39,106 @@ function CarCard({ car }) {
       return;
     }
 
-    // Add car
+    // Add car to compare
     addToCompare(car);
   };
 
+
+  // ==============================
+  // WISHLIST
+  // ==============================
+
+  const {
+    addToWishlist,
+    removeFromWishlist,
+    isInWishlist,
+  } = useWishlist();
+
+  // Check if car is already in wishlist
+  const isWishlisted = isInWishlist(car._id);
+
+  // Handle heart click
+  const handleWishlist = () => {
+    if (isWishlisted) {
+      removeFromWishlist(car._id);
+    } else {
+      addToWishlist(car);
+    }
+  };
+
+
+  // ==============================
+  // UI
+  // ==============================
+
   return (
     <article className="car-card">
-      {/* ================= IMAGE ================= */}
+
+      {/* ==============================
+          CAR IMAGE
+      ============================== */}
+
       <div className="car-image">
+
         {car.images?.gallery?.length > 0 ? (
+
           <img
             src={car.images.gallery[0]}
             alt={`${car.brand} ${car.model}`}
           />
+
         ) : (
+
           <div className="no-image">
             No Images Available
           </div>
+
         )}
+
+
+        {/* ==============================
+            WISHLIST HEART
+        ============================== */}
+
+        <button
+          type="button"
+          className={`wishlist-heart ${
+            isWishlisted ? "active" : ""
+          }`}
+          onClick={handleWishlist}
+          aria-label={
+            isWishlisted
+              ? "Remove from wishlist"
+              : "Add to wishlist"
+          }
+        >
+          {isWishlisted ? "♥" : "♡"}
+        </button>
+
       </div>
 
-      {/* ================= INFORMATION ================= */}
+
+      {/* ==============================
+          CAR INFORMATION
+      ============================== */}
+
       <div className="car-info">
+
+        {/* BRAND */}
+
         <p className="car-brand">
           {car.brand}
         </p>
 
+
+        {/* MODEL */}
+
         <h3 className="car-model">
           {car.model}
         </h3>
+
+
+        {/* VARIANT */}
 
         {car.variant && (
           <p className="car-variant">
@@ -67,13 +146,20 @@ function CarCard({ car }) {
           </p>
         )}
 
+
+        {/* PRICE */}
+
         <p className="car-price">
-          ₹
-          {Number(car.price).toLocaleString("en-IN")}
+          ₹{Number(car.price).toLocaleString("en-IN")}
         </p>
 
-        {/* ================= SPECIFICATIONS ================= */}
+
+        {/* ==============================
+            SPECIFICATIONS
+        ============================== */}
+
         <div className="car-specifications">
+
           <span>
             {car.fuelType}
           </span>
@@ -81,12 +167,18 @@ function CarCard({ car }) {
           <span>
             {car.transmission}
           </span>
+
           <span>
             {car.seatingCapacity} Seats
           </span>
+
         </div>
 
-        {/* ================= VIEW DETAILS ================= */}
+
+        {/* ==============================
+            VIEW DETAILS
+        ============================== */}
+
         <Link
           to={`/cars/${car._id}`}
           className="car-details-btn"
@@ -94,7 +186,11 @@ function CarCard({ car }) {
           View Details
         </Link>
 
-        {/* ================= COMPARE ================= */}
+
+        {/* ==============================
+            COMPARE BUTTON
+        ============================== */}
+
         <button
           type="button"
           className={
@@ -107,14 +203,18 @@ function CarCard({ car }) {
             compareLimitReached && !isCompared
           }
         >
+
           {isCompared
             ? "✓ Added to Compare"
             : compareLimitReached
               ? "Compare Limit Reached"
               : "⚖ Add to Compare"
           }
+
         </button>
+
       </div>
+
     </article>
   );
 }

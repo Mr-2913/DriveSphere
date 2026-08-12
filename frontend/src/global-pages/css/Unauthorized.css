@@ -1,0 +1,263 @@
+/* =========================================================
+   UNAUTHORIZED PAGE
+========================================================= */
+
+.unauthorized-page {
+  min-height: calc(100vh - 150px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 60px 24px;
+
+  box-sizing: border-box;
+
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(23, 107, 135, 0.08),
+      transparent 45%
+    ),
+    var(--bg-primary);
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.unauthorized-content {
+  width: min(620px, 100%);
+
+  text-align: center;
+
+  animation: unauthorizedAppear 500ms ease forwards;
+}
+
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.unauthorized-icon {
+  width: 90px;
+  height: 90px;
+
+  display: grid;
+  place-items: center;
+
+  margin: 0 auto 25px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 50%;
+
+  background: var(--surface-muted);
+
+  font-size: 2.2rem;
+
+  box-shadow: var(--shadow-sm);
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.unauthorized-label {
+  margin: 0 0 12px;
+
+  color: var(--accent);
+
+  font-size: 0.72rem;
+
+  font-weight: 800;
+
+  letter-spacing: 0.15em;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.unauthorized-content h1 {
+  margin: 0 0 16px;
+
+  color: var(--text-primary);
+
+  font-size: clamp(2rem, 5vw, 3.2rem);
+
+  letter-spacing: -0.06em;
+
+  line-height: 1.05;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.unauthorized-description {
+  max-width: 520px;
+
+  margin: 0 auto;
+
+  color: var(--text-secondary);
+
+  font-size: 0.98rem;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.unauthorized-actions {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: 30px;
+}
+
+
+.unauthorized-primary,
+.unauthorized-secondary {
+  min-height: 46px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 0 20px;
+
+  border-radius: 9px;
+
+  font-family: inherit;
+
+  font-size: 0.88rem;
+
+  font-weight: 750;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+
+/* PRIMARY */
+
+.unauthorized-primary {
+  border: 1px solid var(--accent);
+
+  background: var(--accent);
+
+  color: #fff;
+}
+
+.unauthorized-primary:hover {
+  background: var(--accent-hover);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 9px 22px rgba(23, 107, 135, 0.2);
+}
+
+
+/* SECONDARY */
+
+.unauthorized-secondary {
+  border: 1px solid var(--border-strong);
+
+  background: #fff;
+
+  color: var(--text-primary);
+}
+
+.unauthorized-secondary:hover {
+  border-color: var(--accent);
+
+  background: var(--accent-soft);
+
+  color: var(--accent-hover);
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes unauthorizedAppear {
+
+  from {
+    opacity: 0;
+
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .unauthorized-page {
+    min-height: calc(100vh - 120px);
+
+    padding: 45px 20px;
+  }
+
+  .unauthorized-icon {
+    width: 75px;
+    height: 75px;
+
+    font-size: 1.8rem;
+  }
+
+  .unauthorized-content h1 {
+    font-size: 2rem;
+  }
+
+  .unauthorized-description {
+    font-size: 0.9rem;
+  }
+
+  .unauthorized-actions {
+    flex-direction: column;
+  }
+
+  .unauthorized-primary,
+  .unauthorized-secondary {
+    width: 100%;
+
+    box-sizing: border-box;
+  }
+}

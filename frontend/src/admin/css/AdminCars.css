@@ -1,0 +1,418 @@
+/* =========================================================
+   ADMIN CARS PAGE — LIGHT THEME
+========================================================= */
+
+.admin-cars {
+  width: 100%;
+  padding: 32px;
+  box-sizing: border-box;
+  background: #f6f8fb;
+  min-height: 100%;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.admin-page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.admin-page-header h1 {
+  margin: 6px 0 8px;
+  color: #172033;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.admin-page-header p {
+  margin: 0;
+  color: #718096;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.admin-eyebrow {
+  color: #2563eb !important;
+  font-size: 12px !important;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   ADD CAR BUTTON
+========================================================= */
+
+.admin-primary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+  padding: 0 20px;
+
+  border: 1px solid #2563eb;
+  border-radius: 9px;
+
+  background: #2563eb;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.admin-primary-btn:hover {
+  background: #1d4ed8;
+
+  box-shadow:
+    0 5px 14px rgba(37, 99, 235, 0.2);
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   CARS CONTAINER
+========================================================= */
+
+.admin-cars-container {
+  width: 100%;
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+========================================================= */
+
+.admin-car-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+
+  border: 1px solid #e3e8ef;
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 4px 18px rgba(15, 23, 42, 0.06);
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.admin-car-table {
+  width: 100%;
+  min-width: 900px;
+
+  border-collapse: collapse;
+
+  color: #344054;
+}
+
+
+/* =========================================================
+   TABLE HEADER
+========================================================= */
+
+.admin-car-table thead {
+  background: #f8fafc;
+}
+
+.admin-car-table th {
+  height: 52px;
+  padding: 0 18px;
+
+  border-bottom: 1px solid #e5e7eb;
+
+  color: #667085;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 0.8px;
+  text-align: left;
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   TABLE BODY
+========================================================= */
+
+.admin-car-table td {
+  padding: 14px 18px;
+
+  border-bottom: 1px solid #edf0f4;
+
+  color: #475467;
+
+  font-size: 13px;
+
+  vertical-align: middle;
+}
+
+.admin-car-table tbody tr {
+  background: #ffffff;
+
+  transition:
+    background 0.2s ease;
+}
+
+.admin-car-table tbody tr:hover {
+  background: #f8fbff;
+}
+
+.admin-car-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* =========================================================
+   CAR IMAGE
+========================================================= */
+
+.admin-car-image {
+  display: block;
+
+  width: 72px;
+  height: 52px;
+
+  object-fit: cover;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+
+  background: #f1f5f9;
+}
+
+
+/* =========================================================
+   CAR NAME
+========================================================= */
+
+.admin-car-name {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-car-name strong {
+  color: #1d2939;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.admin-car-name span {
+  color: #98a2b3;
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   PRICE
+========================================================= */
+
+.admin-car-table td:nth-child(5) {
+  color: #1d2939;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.admin-car-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+/* =========================================================
+   ACTION BUTTON
+========================================================= */
+
+.admin-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 58px;
+  height: 34px;
+  padding: 0 10px;
+
+  border: 1px solid #d9dee7;
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+/* =========================================================
+   VIEW
+========================================================= */
+
+.admin-action.view {
+  color: #2563eb;
+}
+
+.admin-action.view:hover {
+  border-color: #93c5fd;
+  background: #eff6ff;
+}
+
+
+/* =========================================================
+   EDIT
+========================================================= */
+
+.admin-action.edit {
+  color: #059669;
+}
+
+.admin-action.edit:hover {
+  border-color: #86efac;
+  background: #ecfdf5;
+}
+
+
+/* =========================================================
+   DELETE
+========================================================= */
+
+.admin-action.delete {
+  color: #dc2626;
+}
+
+.admin-action.delete:hover {
+  border-color: #fca5a5;
+  background: #fef2f2;
+}
+
+
+/* =========================================================
+   LOADING / ERROR / EMPTY STATE
+========================================================= */
+
+.admin-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 220px;
+  padding: 30px;
+
+  border: 1px solid #e3e8ef;
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  color: #667085;
+
+  font-size: 14px;
+
+  box-shadow:
+    0 4px 18px rgba(15, 23, 42, 0.04);
+}
+
+.admin-state.error {
+  border-color: #fecaca;
+
+  background: #fff7f7;
+
+  color: #dc2626;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .admin-cars {
+    padding: 26px;
+  }
+
+  .admin-page-header h1 {
+    font-size: 28px;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+  .admin-cars {
+    padding: 18px;
+  }
+
+  .admin-page-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-page-header h1 {
+    font-size: 25px;
+  }
+
+  .admin-page-header .admin-primary-btn {
+    width: 100%;
+  }
+
+  .admin-car-table-wrapper {
+    border-radius: 10px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+  .admin-cars {
+    padding: 14px;
+  }
+
+  .admin-page-header h1 {
+    font-size: 23px;
+  }
+}

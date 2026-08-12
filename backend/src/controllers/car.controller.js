@@ -5,12 +5,12 @@ import { buildCarFilter } from "../utils/carQuery.js";
 export const createCar = async (req, res) => {
   try {
     // ================= CHECK ADMIN =================
-    if (req.user.role !== "admin") {
-      return res.status(403).json({
-        success: false,
-        message: "Access Denied",
-      });
-    }
+    // if (req.user.role !== "admin") {
+    //   return res.status(403).json({
+    //     success: false,
+    //     message: "Access Denied",
+    //   });
+    // }
 
     // ================= BASIC DATA =================
     const {

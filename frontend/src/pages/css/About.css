@@ -1,0 +1,323 @@
+.about-page {
+  width: min(90%, var(--container-width));
+  margin: 0 auto;
+  padding: 60px 0 90px;
+}
+
+
+/* ================= HERO ================= */
+
+.about-hero {
+  padding: 70px 20px;
+  text-align: center;
+}
+
+.about-label {
+  margin: 0 0 12px;
+
+  color: var(--accent);
+
+  font-size: 0.75rem;
+  font-weight: 800;
+
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.about-hero h1 {
+  margin: 0 auto 18px;
+
+  max-width: 850px;
+
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+
+  letter-spacing: -0.07em;
+}
+
+.about-hero-text {
+  max-width: 650px;
+
+  margin: 0 auto;
+
+  color: var(--text-secondary);
+
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+
+/* ================= SECTIONS ================= */
+
+.about-section,
+.about-features {
+  margin-top: 70px;
+}
+
+.about-section-heading {
+  max-width: 700px;
+  margin-bottom: 35px;
+}
+
+.about-section-heading h2,
+.about-technology h2,
+.about-cta h2 {
+  margin: 0;
+
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
+
+  letter-spacing: -0.05em;
+}
+
+
+/* ================= ABOUT CONTENT ================= */
+
+.about-content {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.4fr)
+    minmax(280px, 0.8fr);
+
+  gap: 45px;
+
+  align-items: center;
+}
+
+.about-text {
+  color: var(--text-secondary);
+
+  line-height: 1.75;
+}
+
+.about-text p {
+  margin: 0 0 18px;
+}
+
+
+/* ================= HIGHLIGHTS ================= */
+
+.about-highlight {
+  display: grid;
+
+  grid-template-columns: 1fr;
+
+  gap: 12px;
+}
+
+.about-highlight div {
+  padding: 22px;
+
+  border-left: 3px solid var(--accent);
+
+  background: var(--surface-muted);
+}
+
+.about-highlight strong {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: var(--text-primary);
+
+  font-size: 1.7rem;
+}
+
+.about-highlight span {
+  color: var(--text-secondary);
+
+  font-size: 0.85rem;
+}
+
+
+/* ================= FEATURES ================= */
+
+.about-feature-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 18px;
+}
+
+.about-feature-card {
+  padding: 25px;
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius-md);
+
+  background: #fff;
+
+  box-shadow: var(--shadow-sm);
+}
+
+.about-feature-icon {
+  display: block;
+
+  margin-bottom: 18px;
+
+  font-size: 1.7rem;
+}
+
+.about-feature-card h3 {
+  margin: 0 0 10px;
+
+  font-size: 1.05rem;
+}
+
+.about-feature-card p {
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 0.88rem;
+
+  line-height: 1.65;
+}
+
+
+/* ================= TECHNOLOGY ================= */
+
+.about-technology {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(280px, 0.8fr);
+
+  gap: 50px;
+
+  align-items: center;
+
+  margin-top: 80px;
+
+  padding: 35px;
+
+  border-radius: var(--radius-md);
+
+  background: var(--surface-muted);
+}
+
+.about-technology p:not(.about-label) {
+  color: var(--text-secondary);
+
+  line-height: 1.7;
+}
+
+.technology-list {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+.technology-list span {
+  padding: 10px 14px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 8px;
+
+  background: #fff;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+
+/* ================= CTA ================= */
+
+.about-cta {
+  margin-top: 80px;
+
+  padding: 60px 30px;
+
+  border-radius: var(--radius-md);
+
+  background: var(--accent);
+
+  color: #fff;
+
+  text-align: center;
+}
+
+.about-cta .about-label {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.about-cta h2 {
+  margin-bottom: 12px;
+}
+
+.about-cta p:not(.about-label) {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.about-cta-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 20px;
+
+  min-height: 46px;
+
+  padding: 0 22px;
+
+  border-radius: 9px;
+
+  background: #fff;
+
+  color: var(--accent);
+
+  font-weight: 800;
+
+  text-decoration: none;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 950px) {
+
+  .about-feature-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .about-content,
+  .about-technology {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .about-page {
+    width: 92%;
+
+    padding-top: 30px;
+  }
+
+  .about-hero {
+    padding: 45px 10px;
+  }
+
+  .about-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-technology {
+    padding: 25px;
+  }
+
+  .about-cta {
+    padding: 45px 20px;
+  }
+
+}

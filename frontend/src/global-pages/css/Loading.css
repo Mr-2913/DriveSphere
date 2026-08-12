@@ -1,0 +1,132 @@
+/* =========================================================
+   GLOBAL LOADING
+========================================================= */
+
+.global-loading {
+  min-height: 55vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px 20px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   SPINNER
+========================================================= */
+
+.loading-spinner {
+  width: 52px;
+  height: 52px;
+
+  position: relative;
+
+  margin-bottom: 22px;
+}
+
+
+.loading-spinner::before,
+.loading-spinner::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: 50%;
+}
+
+
+.loading-spinner::before {
+  border: 4px solid var(--border);
+
+}
+
+
+.loading-spinner::after {
+  border: 4px solid transparent;
+
+  border-top-color: var(--accent);
+
+  border-right-color: var(--accent);
+
+  animation: loadingSpin 800ms linear infinite;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.loading-content h2 {
+  margin: 0 0 6px;
+
+  color: var(--text-primary);
+
+  font-family: "Manrope", sans-serif;
+
+  font-size: 1.15rem;
+
+  font-weight: 800;
+
+  letter-spacing: -0.03em;
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.loading-content p {
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 0.85rem;
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes loadingSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .global-loading {
+    min-height: 50vh;
+  }
+
+  .loading-spinner {
+    width: 45px;
+    height: 45px;
+  }
+
+}

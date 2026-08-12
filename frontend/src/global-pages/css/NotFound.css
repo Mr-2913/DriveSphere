@@ -1,0 +1,265 @@
+/* =========================================================
+   404 NOT FOUND PAGE
+========================================================= */
+
+.not-found-page {
+  min-height: calc(100vh - 150px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 60px 24px;
+
+  box-sizing: border-box;
+
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(23, 107, 135, 0.08),
+      transparent 45%
+    ),
+    var(--bg-primary);
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.not-found-content {
+  width: min(650px, 100%);
+
+  text-align: center;
+
+  animation: notFoundAppear 600ms ease forwards;
+}
+
+
+/* =========================================================
+   404 NUMBER
+========================================================= */
+
+.not-found-number {
+  margin-bottom: 5px;
+
+  font-family: "Manrope", sans-serif;
+
+  font-size: clamp(7rem, 18vw, 13rem);
+
+  font-weight: 900;
+
+  line-height: 0.85;
+
+  letter-spacing: -0.09em;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--accent),
+      #2c8ca9
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  user-select: none;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.not-found-content h1 {
+  margin: 30px 0 12px;
+
+  color: var(--text-primary);
+
+  font-family: "Manrope", sans-serif;
+
+  font-size: clamp(2rem, 5vw, 3.1rem);
+
+  font-weight: 800;
+
+  letter-spacing: -0.06em;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.not-found-content p {
+  max-width: 520px;
+
+  margin: 0 auto;
+
+  color: var(--text-secondary);
+
+  font-size: 1rem;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.not-found-actions {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 13px;
+
+  margin-top: 30px;
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
+
+.not-found-primary,
+.not-found-secondary {
+  min-height: 48px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 0 22px;
+
+  border-radius: 9px;
+
+  font-family: inherit;
+
+  font-size: 0.9rem;
+
+  font-weight: 750;
+
+  text-decoration: none;
+
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+
+.not-found-primary {
+  border: 1px solid var(--accent);
+
+  background: var(--accent);
+
+  color: #fff;
+}
+
+.not-found-primary:hover {
+  background: var(--accent-hover);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 9px 22px rgba(23, 107, 135, 0.2);
+}
+
+
+/* =========================================================
+   SECONDARY BUTTON
+========================================================= */
+
+.not-found-secondary {
+  border: 1px solid var(--border-strong);
+
+  background: #fff;
+
+  color: var(--text-primary);
+}
+
+.not-found-secondary:hover {
+  border-color: var(--accent);
+
+  background: var(--accent-soft);
+
+  color: var(--accent-hover);
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes notFoundAppear {
+
+  from {
+    opacity: 0;
+
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .not-found-page {
+    min-height: calc(100vh - 120px);
+
+    padding: 45px 20px;
+  }
+
+
+  .not-found-number {
+    font-size: 8rem;
+  }
+
+
+  .not-found-content h1 {
+    margin-top: 25px;
+
+    font-size: 2rem;
+  }
+
+
+  .not-found-content p {
+    font-size: 0.92rem;
+  }
+
+
+  .not-found-actions {
+    flex-direction: column;
+
+    width: 100%;
+  }
+
+
+  .not-found-primary,
+  .not-found-secondary {
+    width: 100%;
+
+    box-sizing: border-box;
+  }
+
+}

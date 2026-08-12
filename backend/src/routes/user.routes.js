@@ -1,26 +1,36 @@
-import { Router } from "express";
-import { registerUser, userLogin, getUserProfile, updateUser, changePassword } from "../controllers/user.controller.js";
+import express from "express";
+
+import {
+  registerUser,
+  userLogin,
+  getUserProfile,
+  updateUser,
+  changePassword,
+} from "../controllers/user.controller.js";
+
 import { protect } from "../middlewares/auth.middleware.js";
 
+const router = express.Router();
 
-const router=Router();
 
-router.post("/register",registerUser);
+// Register
+router.post("/register", registerUser);
+
+
+// Login
 router.post("/login", userLogin);
-router.get("/profile", 
-    protect,
-    getUserProfile,
-);
 
-router.put(
-    "/profile",
-    protect,
-    updateUser
-);
-router.put(
-    "/change-password",
-    protect,
-    changePassword
-);
+
+// Profile
+router.get("/profile", protect, getUserProfile);
+
+
+// Update profile
+router.put("/profile", protect, updateUser);
+
+
+// Change password
+router.put("/change-password", protect, changePassword);
+
 
 export default router;

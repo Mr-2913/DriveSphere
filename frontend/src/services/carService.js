@@ -1,7 +1,9 @@
-import axios from "axios";
+import api from "./api";
 
-const API_URL = "http://localhost:3100/api/cars";
 
+// ========================================
+// GET ALL CARS
+// ========================================
 
 export const getAllCars = async ({
   search = "",
@@ -11,11 +13,11 @@ export const getAllCars = async ({
   bodyType = "",
   minPrice = "",
   maxPrice = "",
-  year="",
-  sort="",
+  year = "",
+  sort = "",
 } = {}) => {
 
-  const response = await axios.get(API_URL, {
+  const response = await api.get("/cars", {
     params: {
       search,
       brand,
@@ -25,7 +27,7 @@ export const getAllCars = async ({
       minPrice,
       maxPrice,
       year,
-      sort
+      sort,
     },
   });
 
@@ -33,9 +35,13 @@ export const getAllCars = async ({
 };
 
 
+// ========================================
+// GET CAR BY ID
+// ========================================
+
 export const getCarById = async (id) => {
 
-  const response = await axios.get(`${API_URL}/${id}`);
+  const response = await api.get(`/cars/${id}`);
 
   return response.data;
 };

@@ -1,20 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap");
 
 :root {
-  --bg-primary: #f6f7f9;
+  --bg-primary: #f6f7f8;
   --bg-secondary: #ffffff;
-  --surface-muted: #f0f3f7;
-  --text-primary: #172033;
-  --text-secondary: #657083;
-  --accent: #e45c2b;
-  --accent-hover: #c94719;
-  --accent-soft: #fff0e9;
-  --border: #dfe5ed;
-  --border-strong: #cbd4df;
-  --success: #14856b;
+  --surface-muted: #f0f3f5;
+  --surface-blue: #eef5f8;
+  --text-primary: #17212b;
+  --text-secondary: #66727d;
+  --accent: #176b87;
+  --accent-hover: #10546c;
+  --accent-soft: #e8f3f7;
+  --navy: #173044;
+  --border: #dde3e7;
+  --border-strong: #c7d2d8;
+  --success: #15735e;
+  --danger: #b44949;
   --container-width: 1200px;
-  --shadow-sm: 0 4px 14px rgba(26, 38, 56, 0.06);
-  --shadow-md: 0 16px 40px rgba(26, 38, 56, 0.1);
+  --shadow-sm: 0 3px 12px rgba(24, 40, 51, .05);
+  --shadow-md: 0 18px 42px rgba(24, 40, 51, .10);
+  --radius-sm: 10px;
+  --radius-md: 16px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -22,18 +27,23 @@ html { scroll-behavior: smooth; }
 body { min-width: 320px; background: var(--bg-primary); color: var(--text-primary); font-family: "DM Sans", Arial, sans-serif; line-height: 1.5; }
 button, input, select { font: inherit; }
 button { cursor: pointer; }
-button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid rgba(228, 92, 43, 0.26); outline-offset: 2px; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid rgba(23, 107, 135, .25); outline-offset: 2px; }
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
 h1, h2, h3, h4 { font-family: "Manrope", "DM Sans", sans-serif; line-height: 1.18; }
 
-/* Simple landing-page sections that do not own a dedicated component stylesheet. */
-main + section, .hero + .search-bar + section, .hero + .search-bar + section + section { width: min(90%, var(--container-width)); margin-inline: auto; }
-section:not([class]) { padding: 28px 0; }
-section:not([class]) h2 { margin-bottom: 18px; font-size: clamp(1.35rem, 2vw, 1.8rem); }
+.hero + .search-bar + section, .hero + .search-bar + section + section { width: min(90%, var(--container-width)); margin-inline: auto; }
+section:not([class]) { padding: 34px 0; }
+section:not([class]) + section:not([class]) { border-top: 1px solid var(--border); }
+section:not([class]) h2 { margin-bottom: 17px; font-size: clamp(1.4rem, 2vw, 1.85rem); letter-spacing: -.04em; }
 section:not([class]) > div { display: flex; flex-wrap: wrap; gap: 10px; }
-section:not([class]) button { padding: 10px 17px; border: 1px solid var(--border); border-radius: 999px; background: var(--bg-secondary); color: var(--text-primary); font-weight: 600; box-shadow: var(--shadow-sm); transition: 180ms ease; }
-section:not([class]) button:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-footer { margin-top: 40px; padding: 28px 5%; border-top: 1px solid var(--border); background: #fff; color: var(--text-secondary); text-align: center; font-size: .9rem; }
+section:not([class]) button { padding: 10px 18px; border: 1px solid var(--border); border-radius: 999px; background: var(--bg-secondary); color: var(--text-primary); font-size: .9rem; font-weight: 700; box-shadow: var(--shadow-sm); transition: 180ms ease; }
+section:not([class]) button:hover { border-color: var(--accent); background: var(--accent-soft); color: var(--accent-hover); transform: translateY(-2px); }
+footer { margin-top: auto; padding: 32px 5%; border-top: 1px solid var(--border); background: #fff; color: var(--text-secondary); text-align: center; font-size: .88rem; }
+.cars-page { width: min(90%, var(--container-width)); min-height: 55vh; display: grid; place-items: center; margin: 0 auto; padding: 50px 0; }
+.cars-placeholder { max-width: 620px; padding: 46px 32px; border: 1px solid var(--border); border-radius: var(--radius-md); background: #fff; box-shadow: var(--shadow-sm); text-align: center; }
+.cars-placeholder p { margin-bottom: 8px; color: var(--accent); font-size: .72rem; font-weight: 800; letter-spacing: .14em; }
+.cars-placeholder h1 { margin-bottom: 10px; font-size: clamp(2rem, 4vw, 2.8rem); letter-spacing: -.06em; }
+.cars-placeholder span { color: var(--text-secondary); }
 
-@media (max-width: 600px) { section:not([class]) { padding: 22px 0; } }
+@media (max-width: 600px) { section:not([class]) { padding: 25px 0; } }
