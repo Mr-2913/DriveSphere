@@ -4,7 +4,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 // ========================================
 // COMPONENTS
 // ========================================
-
+import MainLayout from "./components/MainLayout";
 import Navbar from "./components/Nav";
 import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoutes";
@@ -52,142 +52,171 @@ import AdminUsers from "./admin/pages/AdminUser";
 function App() {
   const navigate = useNavigate();
 
-  // ========================================
-  // GLOBAL API ERROR LISTENERS
-  // ========================================
-
   useEffect(() => {
-    // --------------------------------------
-    // 401 UNAUTHORIZED
-    // --------------------------------------
-
     const handleUnauthorized = () => {
       navigate("/unauthorized");
     };
-
-    // --------------------------------------
-    // 500 SERVER ERROR
-    // --------------------------------------
 
     const handleServerError = () => {
       navigate("/server-error");
     };
 
-    // --------------------------------------
-    // OFFLINE / NETWORK ERROR
-    // --------------------------------------
-
     const handleOffline = () => {
       navigate("/offline");
     };
 
-    // --------------------------------------
-    // ADD EVENT LISTENERS
-    // --------------------------------------
+    window.addEventListener(
+      "auth:unauthorized",
+      handleUnauthorized
+    );
 
-    window.addEventListener("auth:unauthorized", handleUnauthorized);
+    window.addEventListener(
+      "api:server-error",
+      handleServerError
+    );
 
-    window.addEventListener("api:server-error", handleServerError);
-
-    window.addEventListener("api:offline", handleOffline);
-
-    // --------------------------------------
-    // CLEANUP
-    // --------------------------------------
+    window.addEventListener(
+      "api:offline",
+      handleOffline
+    );
 
     return () => {
-      window.removeEventListener("auth:unauthorized", handleUnauthorized);
+      window.removeEventListener(
+        "auth:unauthorized",
+        handleUnauthorized
+      );
 
-      window.removeEventListener("api:server-error", handleServerError);
+      window.removeEventListener(
+        "api:server-error",
+        handleServerError
+      );
 
-      window.removeEventListener("api:offline", handleOffline);
+      window.removeEventListener(
+        "api:offline",
+        handleOffline
+      );
     };
   }, [navigate]);
 
-  // ========================================
-  // JSX
-  // ========================================
-
   return (
-    <>
-      <Navbar />
-
-  <Routes>
-
-  {/* PUBLIC ROUTES */}
-
-  <Route path="/" element={<Home />} />
-  <Route path="/login" element={<Login />} />
-  <Route path="/register" element={<Register />} />
-  <Route path="/cars" element={<Cars />} />
-  <Route path="/cars/:id" element={<CarDetails />} />
-  <Route path="/about" element={<About />} />
-
-  {/* GLOBAL */}
-
-  <Route path="/unauthorized" element={<Unauthorized />} />
-  <Route path="/server-error" element={<ServerError />} />
-  <Route path="/offline" element={<Offline />} />
-
-  {/* PROTECTED */}
-
-  <Route element={<ProtectedRoute />}>
-    <Route path="/compare" element={<CompareCars />} />
-    <Route path="/compare/:car1/:car2" element={<CompareCars />} />
-    <Route path="/wishlist" element={<Wishlist />} />
-    <Route path="/profile" element={<Profile />} />
-  </Route>
-
-  {/* ADMIN */}
-
-<Route element={<AdminRoute />}>
-  <Route element={<AdminLayout />}>
-
-    <Route
-      path="/admin"
-      element={<AdminDashboard />}
-    />
-
-    <Route
-      path="/admin/cars"
-      element={<AdminCars />}
-    />
-
-    <Route
-      path="/admin/cars/add"
-      element={<AddCar />}
-    />
-
-    <Route
-      path="/admin/cars/edit/:id"
-      element={<EditCar />}
-    />
-
-    <Route
-  path="/admin/users"
-  element={<AdminUsers />}
-/>
-  </Route>
-</Route>
-
-  {/* 404 */}
-
-  <Route path="*" element={<NotFound />} />
-
-</Routes>
+    <Routes>
 
       {/* ==================================
-          COMPARE BAR
+          PUBLIC / USER LAYOUT
       ================================== */}
 
-      <CompareBar />
+      <Route element={<MainLayout />}>
+
+        <Route
+          path="/"
+          element={<Home />}
+        />
+
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+
+        <Route
+          path="/register"
+          element={<Register />}
+        />
+
+        <Route
+          path="/cars"
+          element={<Cars />}
+        />
+
+        <Route
+          path="/cars/:id"
+          element={<CarDetails />}
+        />
+
+        <Route
+          path="/about"
+          element={<About />}
+        />
+
+        <Route
+          path="/unauthorized"
+          element={<Unauthorized />}
+        />
+
+        <Route
+          path="/server-error"
+          element={<ServerError />}
+        />
+
+        <Route
+          path="/offline"
+          element={<Offline />}
+        />
+
+        <Route element={<ProtectedRoute />}>
+
+          <Route
+            path="/compare"
+            element={<CompareCars />}
+          />
+
+          <Route
+            path="/compare/:car1/:car2"
+            element={<CompareCars />}
+          />
+
+          <Route
+            path="/wishlist"
+            element={<Wishlist />}
+          />
+
+          <Route
+            path="/profile"
+            element={<Profile />}
+          />
+
+        </Route>
+
+      </Route>
+
 
       {/* ==================================
-          FOOTER
+          ADMIN LAYOUT
       ================================== */}
 
-      <Footer />
-    </>
+      <Route element={<AdminRoute />}>
+
+        <Route element={<AdminLayout />}>
+
+          <Route
+            path="/admin"
+            element={<AdminDashboard />}
+          />
+
+          <Route
+            path="/admin/cars"
+            element={<AdminCars />}
+          />
+
+          <Route
+            path="/admin/users"
+            element={<AdminUsers />}
+          />
+
+        </Route>
+
+      </Route>
+
+
+      {/* ==================================
+          404
+      ================================== */}
+
+      <Route
+        path="*"
+        element={<NotFound />}
+      />
+
+    </Routes>
   );
 }
 

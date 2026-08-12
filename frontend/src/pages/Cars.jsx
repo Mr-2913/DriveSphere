@@ -28,6 +28,10 @@ function Cars() {
 
   const [showFilters, setShowFilters] = useState(false);
 
+// pagination
+    const [page, setPage] = useState(1);
+  const limit = 6;
+  const [totalPages, setTotalPages] = useState(1);
   // ========================================
   // FILTER VALUES
   // ========================================
@@ -138,6 +142,26 @@ function Cars() {
     <Loading message="Loading cars..." />
   );
 }
+
+// =================================================
+  // NEXT PAGE
+  // =================================================
+
+  const handleNextPage = () => {
+    if (page < totalPages) {
+      setPage(page + 1);
+    }
+  };
+
+  // =================================================
+  // PREVIOUS PAGE
+  // =================================================
+
+  const handlePreviousPage = () => {
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  };
   // ========================================
   // UI
   // ========================================
@@ -456,6 +480,22 @@ function Cars() {
             <CarCard key={car._id} car={car} />
           ))}
         </section>
+      )}
+
+            {!loading && !error && cars.length > 0 && (
+        <div className="pagination">
+          <button onClick={handlePreviousPage} disabled={page === 1}>
+            Previous
+          </button>
+
+          <span>
+            Page {page} of {totalPages}
+          </span>
+
+          <button onClick={handleNextPage} disabled={page === totalPages}>
+            Next
+          </button>
+        </div>
       )}
     </main>
   );

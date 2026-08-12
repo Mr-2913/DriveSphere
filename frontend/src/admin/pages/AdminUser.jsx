@@ -8,6 +8,14 @@ function AdminUsers() {
   const [error, setError] = useState("");
 
   // ========================================
+  // SEARCH + FILTER STATES
+  // ========================================
+
+  const [search, setSearch] = useState("");
+  const [roleFilter, setRoleFilter] = useState("all");
+
+
+  // ========================================
   // GET ALL USERS
   // ========================================
 
@@ -31,9 +39,11 @@ function AdminUsers() {
     }
   };
 
+
   useEffect(() => {
     fetchUsers();
   }, []);
+
 
   // ========================================
   // CHANGE ROLE
@@ -54,7 +64,10 @@ function AdminUsers() {
         )
       );
     } catch (error) {
-      console.error("Failed to update role:", error);
+      console.error(
+        "Failed to update role:",
+        error
+      );
 
       alert(
         error.response?.data?.message ||
@@ -62,6 +75,7 @@ function AdminUsers() {
       );
     }
   };
+
 
   // ========================================
   // DELETE USER
@@ -75,7 +89,9 @@ function AdminUsers() {
     if (!confirmed) return;
 
     try {
-      await api.delete(`/admin/users/${userId}`);
+      await api.delete(
+        `/admin/users/${userId}`
+      );
 
       setUsers((previousUsers) =>
         previousUsers.filter(
@@ -83,7 +99,10 @@ function AdminUsers() {
         )
       );
     } catch (error) {
-      console.error("Failed to delete user:", error);
+      console.error(
+        "Failed to delete user:",
+        error
+      );
 
       alert(
         error.response?.data?.message ||
@@ -92,6 +111,45 @@ function AdminUsers() {
     }
   };
 
+
+  // ========================================
+  // SEARCH + ROLE FILTER
+  // ========================================
+
+  const filteredUsers = users.filter((user) => {
+    const searchText = search
+      .trim()
+      .toLowerCase();
+
+    // -------------------------------
+    // SEARCH
+    // -------------------------------
+
+    const matchesSearch =
+      user.name
+        ?.toLowerCase()
+        .includes(searchText) ||
+      user.username
+        ?.toLowerCase()
+        .includes(searchText) ||
+      user.email
+        ?.toLowerCase()
+        .includes(searchText);
+
+
+    // -------------------------------
+    // ROLE FILTER
+    // -------------------------------
+
+    const matchesRole =
+      roleFilter === "all" ||
+      user.role?.toLowerCase() === roleFilter;
+
+
+    return matchesSearch && matchesRole;
+  });
+
+
   // ========================================
   // UI
   // ========================================
@@ -99,95 +157,234 @@ function AdminUsers() {
   return (
     <section className="admin-users">
 
-      {/* HEADER */}
+
+      {/* ========================================
+          HEADER
+      ======================================== */}
 
       <div className="admin-page-header">
 
         <div>
+
           <p className="admin-eyebrow">
             User Management
           </p>
 
-          <h1>Users</h1>
+          <h1>
+            Users
+          </h1>
 
           <p>
             Manage DriveSphere users and
             administrator access.
           </p>
+
         </div>
 
       </div>
 
 
-      {/* CONTENT */}
+      {/* ========================================
+          CONTENT
+      ======================================== */}
 
       <div className="admin-users-container">
 
+
+        {/* ========================================
+            SEARCH + FILTER
+        ======================================== */}
+
+        <div className="admin-users-toolbar">
+
+
+          {/* SEARCH */}
+
+          <div className="admin-user-search">
+
+            <input
+              type="text"
+              placeholder="Search by name, username or email..."
+              value={search}
+              onChange={(e) =>
+                setSearch(e.target.value)
+              }
+            />
+
+          </div>
+
+
+          {/* ROLE FILTER */}
+
+          <select
+            className="admin-user-role-filter"
+            value={roleFilter}
+            onChange={(e) =>
+              setRoleFilter(e.target.value)
+            }
+          >
+
+            <option value="all">
+              All Roles
+            </option>
+
+            <option value="user">
+              Users
+            </option>
+
+            <option value="admin">
+              Admins
+            </option>
+
+          </select>
+
+        </div>
+
+
+        {/* ========================================
+            LOADING
+        ======================================== */}
+
         {loading && (
+
           <div className="admin-state">
             Loading users...
           </div>
+
         )}
 
 
+        {/* ========================================
+            ERROR
+        ======================================== */}
+
         {!loading && error && (
+
           <div className="admin-state error">
             {error}
           </div>
+
         )}
 
+
+        {/* ========================================
+            NO USERS
+        ======================================== */}
 
         {!loading &&
           !error &&
           users.length === 0 && (
+
             <div className="admin-state">
               No users found.
             </div>
-          )}
 
+        )}
+
+
+        {/* ========================================
+            NO FILTER RESULTS
+        ======================================== */}
 
         {!loading &&
           !error &&
-          users.length > 0 && (
+          users.length > 0 &&
+          filteredUsers.length === 0 && (
+
+            <div className="admin-state">
+              No users match your search or filter.
+            </div>
+
+        )}
+
+
+        {/* ========================================
+            USER TABLE
+        ======================================== */}
+
+        {!loading &&
+          !error &&
+          filteredUsers.length > 0 && (
 
           <div className="admin-user-table-wrapper">
 
             <table className="admin-user-table">
 
+
+              {/* ====================================
+                  TABLE HEADER
+              ==================================== */}
+
               <thead>
+
                 <tr>
-                  <th>Name</th>
-                  <th>Username</th>
-                  <th>Email</th>
-                  <th>Role</th>
-                  <th>Joined</th>
-                  <th>Actions</th>
+
+                  <th>
+                    Name
+                  </th>
+
+                  <th>
+                    Username
+                  </th>
+
+                  <th>
+                    Email
+                  </th>
+
+                  <th>
+                    Role
+                  </th>
+
+                  <th>
+                    Joined
+                  </th>
+
+                  <th>
+                    Actions
+                  </th>
+
                 </tr>
+
               </thead>
 
 
+              {/* ====================================
+                  TABLE BODY
+              ==================================== */}
+
               <tbody>
 
-                {users.map((user) => (
+                {filteredUsers.map((user) => (
 
                   <tr key={user._id}>
 
+
+                    {/* NAME */}
+
                     <td>
+
                       <strong>
                         {user.name}
                       </strong>
+
                     </td>
 
+
+                    {/* USERNAME */}
 
                     <td>
                       @{user.username}
                     </td>
 
 
+                    {/* EMAIL */}
+
                     <td>
                       {user.email}
                     </td>
 
+
+                    {/* ROLE */}
 
                     <td>
 
@@ -215,7 +412,10 @@ function AdminUsers() {
                     </td>
 
 
+                    {/* JOINED */}
+
                     <td>
+
                       {user.createdAt
                         ? new Date(
                             user.createdAt
@@ -223,8 +423,11 @@ function AdminUsers() {
                             "en-IN"
                           )
                         : "-"}
+
                     </td>
 
+
+                    {/* ACTIONS */}
 
                     <td>
 
@@ -232,7 +435,9 @@ function AdminUsers() {
                         type="button"
                         className="admin-action delete"
                         onClick={() =>
-                          handleDelete(user._id)
+                          handleDelete(
+                            user._id
+                          )
                         }
                       >
                         Delete
